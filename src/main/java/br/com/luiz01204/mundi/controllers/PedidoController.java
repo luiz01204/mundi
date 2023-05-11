@@ -4,6 +4,7 @@ import br.com.luiz01204.mundi.dto.NovoPedido;
 import br.com.luiz01204.mundi.model.Pedido;
 import br.com.luiz01204.mundi.model.PedidoRepository;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("pedido")
 public class PedidoController {
+    @Autowired
     PedidoRepository repository;
 
     @GetMapping("cadastrar")
@@ -26,6 +28,6 @@ public class PedidoController {
             return "pedido/cadastrar";
         }
         repository.save(new Pedido(dados));
-        return "pedido/cadastrar";
+        return "redirect:/home";
     }
 }
